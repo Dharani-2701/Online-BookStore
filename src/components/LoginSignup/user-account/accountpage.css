@@ -1,0 +1,100 @@
+.dashb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 5%;              /* Provide some padding for spacing */
+  box-sizing: border-box;        /* Ensure padding and border are included in the element's total width and height */
+  border-bottom: 1px solid #7c3404; /* A subtle bottom border for visual separation */
+  background-color: #ce7134;     /* Background color of the navigation bar */
+  position: sticky;              /* Keeps the nav bar at the top of the page when scrolling */
+  top: 0;                        /* Stick to the top of the viewport */
+  z-index: 1000;                 /* Ensures the nav bar stays on top of other elements */
+}
+.account-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.account-info-card{
+  border: 2px solid black;
+  width: 500px;
+  text-align: center;
+  padding: 10px;
+  display: block;
+  margin: 10px auto;
+  cursor: pointer; 
+}
+
+.account-info p{
+  text-align: left;
+  font-size: 18px;
+}
+
+.personal-details {
+  margin-top: 20px;
+}
+
+.edit-button,
+.save-button {
+  background-color: #ce7134;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 10px auto;
+  border-radius: 5px;
+}
+
+.edit-button:hover,
+.save-button:hover {
+  background-color: #7c3404;
+}
+
+.edit-form {
+  border: 2px solid black;
+  width: 500px;
+  text-align: left;
+  padding: 10px;
+  display: block;
+  margin: 10px auto;
+  cursor: pointer;
+}
+.edit-form input{
+  border: 0;
+  font-size: 18px;
+  padding: 10px;
+}
+.form-group{
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.account-loading {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 50px;
+}
+.icons .wishlist,
+.icons .signout-icon,
+.icons .cart-icon {
+  cursor: pointer;
+  font-size: 24px; 
+  transition: transform 0.2s;
+}
+
+.icons .wishlist:hover,
+.icons .signout-icon:hover,
+.icons .cart-icon:hover {
+  color: #ddd;
+  transform: scale(1.1);/* Adjust hover color as needed */
+}
+.icons{
+  color: #7c3404;
+  cursor: pointer;
+}
+.icons .signout-icon{
+  padding-left: 10px;
+}

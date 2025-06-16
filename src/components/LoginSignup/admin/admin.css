@@ -1,0 +1,44 @@
+.dashb{
+    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 5%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #7c3404;
+  position: sticky;
+  top: 0;
+  background-color: #ce7134;
+  z-index: 1000;
+}
+.edit-book{
+    background-color: #7c3404;
+    color: #fff;
+}
+.edit-book:hover{
+    background-color: #8a4a1f;
+}
+.add-book-icon:hover{
+    font-size: 24px;
+
+}
+.icons .add-book-icon {
+  cursor: pointer;
+  font-size: 24px; 
+  transition: transform 0.2s;
+}
+
+
+.icons .add-book-icon:hover {
+  color: #ddd;
+  transform: scale(1.1);/* Adjust hover color as needed */
+}
+
+.delete{
+  color: red;
+  width: 24px;
+}
+
+.delete:hover{
+  color: rgb(228, 88, 88);
+}

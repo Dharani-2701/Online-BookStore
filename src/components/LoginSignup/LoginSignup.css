@@ -1,0 +1,141 @@
+.background-login-signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-image: url("../assests/bg.png"); /* Adjust the background color as needed */
+    
+}
+
+.background-login-signup::after{
+    background-color: rgba(0, 0, 0, 0.55);
+}
+  
+.Container {
+    background-color: rgba(210, 204, 204, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Adjust the maximum width as needed */
+}
+  
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+img{
+  color: #251810;
+}  
+
+.icon{
+  color: #251810;
+  font-size: 24px;
+  padding: 10px;
+}
+.header .text {
+    font-size: 24px;
+    font-weight: bold;
+}
+  
+.header .underline {
+    width: 50px;
+    height: 4px;
+    background-color: #251810; /* Adjust the underline color as needed */
+    margin: 10px auto;
+    border-radius: 10px;
+}
+  
+.inputs .input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+  
+.inputs .input img {
+    margin-right: 10px;
+}
+  
+.inputs .input input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+  
+.submit-container {
+    text-align: center;
+}
+  
+  .submit-container .submit {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #251810;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-container .submit:hover {
+    background-color: #251810;
+  }
+  
+  .already {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .already a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .already a:hover {
+    text-decoration: underline;
+  }
+  .forgot-password span{
+    color: #fff;
+    cursor: pointer;
+    font-weight: 300px;
+  }
+  .cart-icon {
+    font-size: 24px; /* Adjust the size as needed */
+    color: #000; /* Change the color as needed */
+  }
+  .home-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+.home-page h1{
+  margin-top: 50px;
+  color: #fff;
+}
+
+.home-page-button{
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #111;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+}
+.home-page-button:hover{
+  background-color: #fff;
+  color: #111;
+}
+
+.home-page-span {
+  color: #7c3404;
+  -webkit-text-stroke: 1px #000; 
+  font-weight: bold;
+}
+
+.home-page-text{
+  -webkit-text-stroke: 1px #000; 
+}

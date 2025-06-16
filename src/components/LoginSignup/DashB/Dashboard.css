@@ -1,0 +1,288 @@
+.dashb {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 5%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #7c3404;
+  position: sticky;
+  top: 0;
+  background-color: #ce7134;
+  z-index: 1000;
+}
+
+.logo {
+  height: 55px;
+  cursor: pointer;
+}
+
+.logo img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #7c3404;
+  padding: 10px 20px;
+  border-radius: 50px;
+  transition: transform 0.2s;
+}
+
+
+.search-box input {
+  padding: 6px;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  max-width: 200px;
+  
+}
+
+.search-box input::placeholder {
+  color: #fff;
+}
+
+.search-box img {
+  width: 20px;
+  cursor: pointer;
+  
+}
+
+.cart-icon {
+  color: #7c3404;
+  cursor: pointer;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  margin-top: 20px;
+}
+
+.filter-section {
+  width: 25%;
+  padding: 20px;
+  position: sticky;
+  top: 70px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 1px solid #ddd;
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+}
+.filter-section input{
+  border-radius: 10px;
+  border: 2px solid black;
+  padding: 5px;
+  transition: transform 0.1s;
+}
+
+.filter-section input:hover{
+  transform: scale(1.1);
+}
+
+.bookstore {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.book-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(50, 15, 15, 0.811);
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  width: 200px;
+  overflow: hidden;
+  object-fit: cover;
+  transition: transform 0.2s;
+}
+
+.book-card:hover{
+  transform: scale(1.1);
+  
+}
+.book-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+}
+
+.book-details {
+  padding: 10px 0;
+}
+
+.book-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.book-author,
+.book-price {
+  font-size: 14px;
+  color: #555; /* Adjust the color as needed */
+}
+.cart-icon {
+  color: #7c3404;
+  cursor: pointer;
+}
+
+.add-to-cart{
+  background-color: #ce7134;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.wishlist-icon{
+  color: red;
+  cursor: pointer;
+}
+
+.wishlist-icon:hover {
+  color: #ddd;
+  transform: scale(1.1);
+}
+.book-stock {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.in-stock {
+  color: green;
+}
+
+.out-of-stock {
+  color: red;
+}
+
+.add-to-cart:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.dashboard .icons {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Adjust spacing as needed */
+}
+
+.icons .wishlist,
+.icons .profile-icon,
+.icons .cart-icon {
+  cursor: pointer;
+  font-size: 24px; 
+  transition: transform 0.2s;
+}
+
+.icons .wishlist:hover,
+.icons .profile-icon:hover,
+.icons .cart-icon:hover {
+  color: #ddd;
+  transform: scale(1.1);/* Adjust hover color as needed */
+}
+.icons{
+  color: #7c3404;
+  cursor: pointer;
+}
+.filter-by-author{
+  border-radius: 50px;
+  padding: 5px 10px;
+ 
+}
+.filter-by-author:hover{
+  box-shadow: 2px 4px 8px #7c3404;
+}
+.dashb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 5%;              
+  box-sizing: border-box;        
+  border-bottom: 1px solid #7c3404; 
+  background-color: #ce7134;    
+  position: sticky;              
+  top: 0;                      
+  z-index: 1000;                 
+}
+
+.logo {
+  height: 55px;                  /* Logo height */
+  cursor: pointer;               /* Changes cursor to pointer to indicate it's clickable */
+}
+
+.logo img {
+  height: 100%;                  /* Ensures the image fits within the logo container */
+  width: 100%;                   /* Ensures the image maintains aspect ratio within the logo container */
+  object-fit: contain;           /* Keeps the aspect ratio of the image intact */
+}
+
+.search-box {
+  display: flex;
+  align-items: center;           /* Centers the content vertically */
+  background: #7c3404;           /* Darker background for contrast with the input text */
+  padding: 10px 20px;            /* Padding inside the search box */
+  border-radius: 50px;           /* Rounded edges for a modern look */
+  transition: transform 0.2s;    /* Smooth scaling transition on hover */
+}
+
+.search-box:hover {
+  transform: scale(1.1);         /* Scales up slightly on hover for a visual cue */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for a floating effect */
+}
+
+.search-box input {
+  padding: 6px;                  /* Padding for text inside the input */
+  background: transparent;       /* Transparent background to match the search box */
+  border: none;                  /* No border to keep the design clean */
+  outline: none;                 /* Removes the default outline on focus */
+  color: #fff;                   /* White text color for contrast against the dark background */
+  font-size: 18px;               /* Font size for better readability */
+  max-width: 200px;              /* Limits the width of the input box */
+}
+
+.search-box input::placeholder {
+  color: #fff;                  
+}
+
+.search-box img {
+  width: 20px;                   
+  cursor: pointer;               
+}
+
+.icons {
+  display: flex;
+  align-items: center;           /* Centers the icons vertically */
+  gap: 20px;                     /* Space between the icons */
+  color: #7c3404;                /* Sets the color of the icons */
+}
+
+.icons .wishlist,
+.icons .profile-icon,
+.icons .cart-icon {
+  cursor: pointer;               /* Indicates that icons are interactive */
+  font-size: 24px;               /* Adjusted size for visibility */
+  transition: transform 0.2s;    /* Smooth scaling transition on hover */
+}
+
+.icons .wishlist:hover,
+.icons .profile-icon:hover,
+.icons .cart-icon:hover {
+  color: #ddd;                   /* Lighter color on hover for contrast */
+  transform: scale(1.1);         /* Scales up slightly on hover for a visual cue */
+}

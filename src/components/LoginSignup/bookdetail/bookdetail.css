@@ -1,0 +1,105 @@
+.dashb {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 5%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #7c3404;
+  position: sticky;
+  top: 0;
+  background-color: #ce7134;
+  z-index: 1000;
+}
+
+.book-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .book-image {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+  }
+  
+  .book-info {
+    text-align: center;
+    max-width: 600px;
+  }
+  
+  .book-info h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .book-info h2 {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .book-info p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .book-price {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .book-stock {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .book-stock.in-stock {
+    color: green;
+  }
+  
+  .book-stock.out-of-stock {
+    color: red;
+  }
+  
+  .add-to-cart {
+    background-color: #ce7134;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .add-to-cart:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  button {
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  .book-details button:last-child {
+    margin-top: 10px;
+  }
+  

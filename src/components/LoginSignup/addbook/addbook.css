@@ -1,0 +1,86 @@
+.addbook-container {
+  background-color: #fef9f5;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.dashb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ce7134;
+  padding: 10px 20px;
+}
+
+.logo {
+  height: 50px;
+}
+
+.addbook-title {
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+}
+
+.icons {
+  display: flex;
+  gap: 20px;
+}
+
+.signout-icon,
+.add-book-icon {
+  font-size: 24px;
+  color: #7c3404;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.signout-icon:hover,
+.add-book-icon:hover {
+  transform: scale(1.2);
+  color: #f0e8e2;
+}
+
+.addbook-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 40px auto;
+}
+
+.addbook-form input,
+.addbook-form textarea {
+  flex: 1 1 300px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 2px solid #ce7134;
+  font-size: 16px;
+}
+
+.addbook-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.center-button {
+  width: 100%;
+  text-align: center;
+}
+
+.addbook-form button {
+  background-color: #ce7134;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 20px;
+}
+
+.addbook-form button:hover {
+  background-color: #a44d1d;
+}

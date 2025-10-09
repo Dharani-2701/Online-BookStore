@@ -20,7 +20,7 @@ const Signup = () => {
       return;
     }
     const newUser = { name, username, email, password };
-    fetch("http://localhost:5000/users", {
+    fetch("http://localhost:3000/users", {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newUser)

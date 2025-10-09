@@ -150,9 +150,15 @@
   margin-top: 10px;
 }
 
-.wishlist-icon{
-  color: red;
+.wishlist-icon {
+  font-size: 1.5rem;
+  color: grey;
   cursor: pointer;
+  margin-left: 10px;
+}
+
+.wishlist-icon.in-wishlist {
+  color: red;
 }
 
 .wishlist-icon:hover {

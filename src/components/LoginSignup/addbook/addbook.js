@@ -28,7 +28,7 @@ const AddBook = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('http://localhost:5000/books', {
+    fetch('http://localhost:3000/books', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

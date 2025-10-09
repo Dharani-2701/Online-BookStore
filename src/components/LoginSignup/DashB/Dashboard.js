@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../DashB/Dashboard.css';
+import './Dashboard.css';
 import logoo from '../../assests/logoo.png';
 import search_light from '../../assests/search-w.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
-import booksDataFromJson from '../../../db.json';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-
+import { faCartShopping, faHeart, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Dashboard = () => {
-  const [booksData] = useState(booksDataFromJson.books);
+  const [booksData, setBooksData] = useState([]);
   const [authorInput, setAuthorInput] = useState('');
   const [searchInput, setSearchInput] = useState('');
   const [selectedPrices, setSelectedPrices] = useState([]);
@@ -20,6 +17,18 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    fetch('http://localhost:3000/books')
+      .then(res => res.json())
+      .then(data => setBooksData(data))
+      .catch(err => console.error(err));
+
+    fetch('http://localhost:3000/wishlist')
+      .then(res => res.json())
+      .then(data => setWishlist(data))
+      .catch(err => console.error(err));
+  }, []);
+
   const uniqueTypes = [...new Set(booksData.map(book => book.type))];
   const priceRanges = [
     { label: 'Under ₹100', value: '100' },
@@ -27,110 +36,55 @@ const Dashboard = () => {
     { label: 'Above ₹500', value: '501' },
   ];
 
-  const handleAuthorInputChange = (event) => {
-    setAuthorInput(event.target.value);
+  const handleAuthorInputChange = e => setAuthorInput(e.target.value);
+  const handleSearchInputChange = e => setSearchInput(e.target.value);
+  const handlePriceChange = price => {
+    setSelectedPrices(prev => prev.includes(price) ? prev.filter(p => p !== price) : [...prev, price]);
+  };
+  const handleTypeChange = type => {
+    setSelectedTypes(prev => prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]);
   };
 
-  const handleSearchInputChange = (event) => {
-    setSearchInput(event.target.value);
-  }
-
-  const handlePriceChange = (price) => {
-    setSelectedPrices(prevState =>
-      prevState.includes(price) ? prevState.filter(p => p !== price) : [...prevState, price]
-    );
-  };
-
-  const handleTypeChange = (type) => {
-    setSelectedTypes(prevState =>
-      prevState.includes(type) ? prevState.filter(t => t !== type) : [...prevState, type]
-    );
-  };
+  const handleSignoutIconClick = () => navigate('/');
+  const handleCartIconClick = () => navigate('/cart-page', { state: { cartItems: cart } });
+  const handleProfileIconClick = () => navigate('/account');
 
   const handleAddToCart = (book) => {
-  const isAlreadyInCart = cart.some(cartItem => cartItem.id === book.id);
-
-  if (isAlreadyInCart) {
-    alert('This book is already in the cart!');
-    return;
-  }
-
-  if (book.stock > 0) {
-    fetch('http://localhost:5000/cart', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ ...book, quantity: 1 })
-    })
-    .then(response => response.json())
-    .then(() => {
-      setCart(prevCart => [...prevCart, { ...book, quantity: 1 }]);
-      alert('Added to cart successfully!');
-    })
-    .catch(error => console.error('Error adding item to cart:', error));
-  } else {
-    alert('This book is out of stock and cannot be added to the cart.');
-  }
-};
-
-  
-
-  const handleAddToWishlist = (book) => {
-  const isAlreadyInWishlist = wishlist.some(wishlistItem => wishlistItem.id === book.id);
-
-  if (isAlreadyInWishlist) {
-    alert('This book is already in the wishlist!');
-    return;
-  }
-
-  if (book.stock <= 0) {
-    const confirmAdd = window.confirm('This book is out of stock. Would you like to add it to your wishlist to be notified when it becomes available?');
-    if (!confirmAdd) {
-      return;
+    if (book.stock > 0) {
+      fetch('http://localhost:3000/cart', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...book, quantity: 1 })
+      })
+        .then(res => res.json())
+        .then(() => setCart(prev => [...prev, { ...book, quantity: 1 }]))
+        .catch(err => console.error(err));
+    } else {
+      alert('This book is out of stock and cannot be added to the cart.');
     }
-  }
-
-  fetch('http://localhost:5000/wishlist', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(book)
-  })
-  .then(response => response.json())
-  .then(() => {
-    setWishlist(prevWishlist => [...prevWishlist, book]);
-    alert('Book added to wishlist successfully!');
-  })
-  .catch(error => console.error('Error adding item to wishlist:', error));
-};
-
-  
-
-  const handleCartIconClick = () => {
-    const serializableCart = cart.map(item => ({ ...item })); 
-    navigate('/cart-page', { state: { cartItems: serializableCart } });
   };
 
-  const handleWishlistIconClick = () => {
-    const serializableWishlist = wishlist.map(item => ({ ...item }));
-    navigate('/wishlist-page', { state: { wishlistItems: serializableWishlist } });
-  };
-
-  const handleSignoutIconClick = () => {
-    navigate('/');
-  };
-  
-
-  const handleProfileIconClick = () => {
-    const loggedInUser = { /* fetch the user details based on login */ };
-    navigate('/account', { state: { user: loggedInUser } });
+  const handleToggleWishlist = (book) => {
+    const exists = wishlist.some(w => w.id === book.id);
+    if (exists) {
+      fetch(`http://localhost:3000/wishlist/${book.id}`, { method: 'DELETE' })
+        .then(() => setWishlist(prev => prev.filter(w => w.id !== book.id)))
+        .catch(err => console.error(err));
+    } else {
+      fetch('http://localhost:3000/wishlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(book)
+      })
+        .then(res => res.json())
+        .then(data => setWishlist(prev => [...prev, data]))
+        .catch(err => console.error(err));
+    }
   };
 
   const filteredBooks = booksData.filter(book => {
-    const matchesTitle = searchInput.length ? book.name.toLowerCase().includes(searchInput.toLowerCase()) : true;
-    const matchesAuthor = authorInput.length ? book.author.toLowerCase().includes(authorInput.toLowerCase()) : true;
+    const matchesTitle = searchInput ? book.name.toLowerCase().includes(searchInput.toLowerCase()) : true;
+    const matchesAuthor = authorInput ? book.author.toLowerCase().includes(authorInput.toLowerCase()) : true;
     const matchesPrice = selectedPrices.length ? selectedPrices.some(price => {
       if (price === '100') return book.price <= 100;
       if (price === '500') return book.price > 100 && book.price <= 500;
@@ -141,61 +95,37 @@ const Dashboard = () => {
     return matchesTitle && matchesAuthor && matchesPrice && matchesType;
   });
 
-  const handleBookClick = (id) => {
-    navigate(`/book/${id}`);
-  };
-
   return (
     <div className='dashboard'>
       <div className='dashb'>
         <img src={logoo} alt='logo' className='logo' />
         <div className='search-box'>
-          <input 
-            type='text' 
-            value={searchInput} 
-            onChange={handleSearchInputChange} 
-            placeholder='Search by book'
-          />
+          <input type='text' value={searchInput} onChange={handleSearchInputChange} placeholder='Search by book' />
           <img src={search_light} alt='search icon' />
         </div>
         <div className='icons'>
-          <FontAwesomeIcon icon={faHeart} className='wishlist' onClick={handleWishlistIconClick} />
+          <FontAwesomeIcon icon={faHeart} className='wishlist-icon' onClick={() => navigate('/wishlist-page')} />
           <FontAwesomeIcon icon={faUser} className='profile-icon' onClick={handleProfileIconClick} />
           <FontAwesomeIcon icon={faCartShopping} className='cart-icon' onClick={handleCartIconClick} />
-          <FontAwesomeIcon icon ={faSignOutAlt} className='signout-icon' onClick={handleSignoutIconClick} />
+          <FontAwesomeIcon icon={faSignOutAlt} className='signout-icon' onClick={handleSignoutIconClick} />
         </div>
       </div>
 
       <div className='content'>
         <div className='filter-section'>
           <h3>Filter by Author</h3>
-          <input 
-            type='text'
-            value={authorInput}
-            onChange={handleAuthorInputChange}
-            placeholder='Enter author name'
-          />
-
+          <input type='text' value={authorInput} onChange={handleAuthorInputChange} placeholder='Enter author name' />
           <h3>Filter by Price</h3>
           {priceRanges.map(price => (
             <div key={price.value}>
-              <input
-                type='checkbox'
-                checked={selectedPrices.includes(price.value)}
-                onChange={() => handlePriceChange(price.value)}
-              />
+              <input type='checkbox' checked={selectedPrices.includes(price.value)} onChange={() => handlePriceChange(price.value)} />
               <label>{price.label}</label>
             </div>
           ))}
-
           <h3>Filter by Type</h3>
           {uniqueTypes.map(type => (
             <div key={type}>
-              <input
-                type='checkbox'
-                checked={selectedTypes.includes(type)}
-                onChange={() => handleTypeChange(type)}
-              />
+              <input type='checkbox' checked={selectedTypes.includes(type)} onChange={() => handleTypeChange(type)} />
               <label>{type}</label>
             </div>
           ))}
@@ -203,8 +133,8 @@ const Dashboard = () => {
 
         <div className='bookstore'>
           {filteredBooks.map(book => (
-            <div key={book.id} className='book-card' onClick={() => handleBookClick(book.id)}>
-              <img src={book.imageUrl} alt={book.name} className='book-image' />
+            <div key={book.id} className='book-card'>
+              <img src={book.imageUrl} alt={book.name} className='book-image' onClick={() => navigate(`/book/${book.id}`)} />
               <div className='book-details'>
                 <div className='book-title'>{book.name}</div>
                 <div className='book-author'>{book.author}</div>
@@ -212,23 +142,11 @@ const Dashboard = () => {
                 <div className={`book-stock ${book.stock > 0 ? 'in-stock' : 'out-of-stock'}`}>
                   {book.stock > 0 ? 'In Stock' : 'Out of Stock'}
                 </div>
-                <button 
-                  className='add-to-cart'
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleAddToCart(book);
-                  }}
-                  disabled={book.stock <= 0}
-                >
-                  Add to Cart
-                </button>
+                <button className='add-to-cart' onClick={() => handleAddToCart(book)} disabled={book.stock <= 0}>Add to Cart</button>
                 <FontAwesomeIcon
                   icon={faHeart}
-                  className='wishlist-icon'
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleAddToWishlist(book);
-                  }}
+                  className={`wishlist-icon ${wishlist.some(w => w.id === book.id) ? 'in-wishlist' : ''}`}
+                  onClick={() => handleToggleWishlist(book)}
                 />
               </div>
             </div>

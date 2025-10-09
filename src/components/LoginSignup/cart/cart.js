@@ -20,7 +20,7 @@ const Cart = () => {
   }, []);
 
   const fetchCartItems = () => {
-    fetch('http://localhost:5000/cart')
+    fetch('http://localhost:3000/cart')
       .then(response => response.json())
       .then(data => {
         console.log('Fetched cart data:', data); // Debugging output
@@ -38,7 +38,7 @@ const Cart = () => {
 
   const handleRemoveItem = (index) => {
     const itemId = cartItems[index].id;
-    fetch(`http://localhost:5000/cart/${itemId}`, {
+    fetch(`http://localhost:3000/cart/${itemId}`, {
       method: 'DELETE',
     })
     .then(() => {
@@ -69,7 +69,7 @@ const Cart = () => {
 
   const handleAddToWishlist = (item) => {
     if (!wishlist.some(wishlistItem => wishlistItem.id === item.id)) {
-      fetch('http://localhost:5000/wishlist', {
+      fetch('http://localhost:3000/wishlist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -19,7 +19,7 @@ const EditBook = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/books/${id}`)
+    axios.get(`https://bookstore-api-o0xo.onrender.com/books/${id}`)
       .then(response => {
         const data = response.data;
         setName(data.name);
@@ -52,7 +52,7 @@ const EditBook = () => {
       imageUrl
     };
 
-    axios.put(`http://localhost:3000/books/${id}`, updatedBook)
+    axios.put(`https://bookstore-api-o0xo.onrender.com/books/${id}`, updatedBook)
       .then(() => {
         navigate('/admin-dashboard');
       })

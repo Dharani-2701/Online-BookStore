@@ -20,7 +20,7 @@ const Signup = () => {
       return;
     }
     const newUser = { name, username, email, password };
-    fetch("http://localhost:3000/users", {
+    fetch("https://bookstore-api-o0xo.onrender.com/users", {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newUser)

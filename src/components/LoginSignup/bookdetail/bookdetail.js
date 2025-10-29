@@ -14,12 +14,12 @@ const BookDetails = () => {
   const [wishlist, setWishlist] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/books/${id}`)
+    fetch(`https://bookstore-api-o0xo.onrender.com/books/${id}`)
       .then(res => res.json())
       .then(data => setBook(data))
       .catch(err => console.error(err));
 
-    fetch('http://localhost:3000/wishlist')
+    fetch('https://bookstore-api-o0xo.onrender.com/wishlist')
       .then(res => res.json())
       .then(data => setWishlist(data))
       .catch(err => console.error(err));
@@ -27,7 +27,7 @@ const BookDetails = () => {
 
   const handleAddToCart = () => {
     if (book.stock > 0) {
-      fetch('http://localhost:3000/cart', {
+      fetch('https://bookstore-api-o0xo.onrender.com/cart', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...book, quantity: 1 })
@@ -42,11 +42,11 @@ const BookDetails = () => {
     if (!book) return;
     const exists = wishlist.some(w => w.id === book.id);
     if (exists) {
-      fetch(`http://localhost:3000/wishlist/${book.id}`, { method: 'DELETE' })
+      fetch(`https://bookstore-api-o0xo.onrender.com/wishlist/${book.id}`, { method: 'DELETE' })
         .then(() => setWishlist(prev => prev.filter(w => w.id !== book.id)))
         .catch(err => console.error(err));
     } else {
-      fetch('http://localhost:3000/wishlist', {
+      fetch('https://bookstore-api-o0xo.onrender.com/wishlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(book)

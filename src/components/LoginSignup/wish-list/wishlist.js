@@ -13,7 +13,7 @@ const WishlistPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:3000/wishlist')
+    fetch('https://bookstore-api-o0xo.onrender.com/wishlist')
       .then(res => res.json())
       .then(data => setWishlistItems(data))
       .catch(err => console.error(err));
@@ -25,7 +25,7 @@ const WishlistPage = () => {
 
   const handleAddToCart = (book) => {
     if (book.stock > 0) {
-      fetch('http://localhost:3000/cart', {
+      fetch('https://bookstore-api-o0xo.onrender.com/cart', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...book, quantity: 1 })
@@ -41,11 +41,11 @@ const WishlistPage = () => {
   const handleToggleWishlist = (book) => {
     const exists = wishlistItems.some(w => w.id === book.id);
     if (exists) {
-      fetch(`http://localhost:3000/wishlist/${book.id}`, { method: 'DELETE' })
+      fetch(`https://bookstore-api-o0xo.onrender.com/wishlist/${book.id}`, { method: 'DELETE' })
         .then(() => setWishlistItems(prev => prev.filter(w => w.id !== book.id)))
         .catch(err => console.error(err));
     } else {
-      fetch('http://localhost:3000/wishlist', {
+      fetch('https://bookstore-api-o0xo.onrender.com/wishlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(book)

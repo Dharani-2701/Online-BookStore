@@ -17,7 +17,7 @@ const Dashboard = () => {
 
   // Fetch books from JSON Server
   useEffect(() => {
-    fetch('http://localhost:3000/books')
+    fetch('https://bookstore-api-o0xo.onrender.com/books')
       .then(res => res.json())
       .then(data => setBooksData(data))
       .catch(err => console.error('Error fetching books:', err));
@@ -42,7 +42,7 @@ const Dashboard = () => {
   const handleEditBook = book => navigate(`/edit-book-page/${book.id}`);
 
   const handleDeleteBook = bookId => {
-    fetch(`http://localhost:3000/books/${bookId}`, { method: 'DELETE' })
+    fetch(`https://bookstore-api-o0xo.onrender.com/books/${bookId}`, { method: 'DELETE' })
       .then(res => {
         if (res.ok) {
           setBooksData(prev => prev.filter(book => book.id !== bookId));

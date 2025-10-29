@@ -19,7 +19,7 @@ const Login = () => {
       localStorage.setItem('loggedInUserId', email);
       navigate('/admin-dashboard'); // Redirect to Admin Dashboard
     } else {
-      fetch('http://localhost:3000/users')
+      fetch('https://bookstore-api-o0xo.onrender.com/users')
         .then(async (res) => {
           if (!res.ok) throw new Error("Network response was not ok");
           const data = await res.json();

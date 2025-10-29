@@ -20,7 +20,7 @@ const Cart = () => {
   }, []);
 
   const fetchCartItems = () => {
-    fetch('http://localhost:3000/cart')
+    fetch('https://bookstore-api-o0xo.onrender.com/cart')
       .then(response => response.json())
       .then(data => {
         console.log('Fetched cart data:', data); // Debugging output
@@ -38,7 +38,7 @@ const Cart = () => {
 
   const handleRemoveItem = (index) => {
     const itemId = cartItems[index].id;
-    fetch(`http://localhost:3000/cart/${itemId}`, {
+    fetch(`https://bookstore-api-o0xo.onrender.com/cart/${itemId}`, {
       method: 'DELETE',
     })
     .then(() => {
@@ -69,7 +69,7 @@ const Cart = () => {
 
   const handleAddToWishlist = (item) => {
     if (!wishlist.some(wishlistItem => wishlistItem.id === item.id)) {
-      fetch('http://localhost:3000/wishlist', {
+      fetch('https://bookstore-api-o0xo.onrender.com/wishlist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

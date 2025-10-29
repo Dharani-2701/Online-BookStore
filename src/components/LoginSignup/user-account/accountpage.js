@@ -48,7 +48,7 @@ const AccountPage = () => {
   useEffect(() => {
     const userEmail = localStorage.getItem('loggedInUserId');
     if (userEmail) {
-      fetch(`http://localhost:3000/users?email=${encodeURIComponent(userEmail)}`)
+      fetch(`https://bookstore-api-o0xo.onrender.com/users?email=${encodeURIComponent(userEmail)}`)
         .then(response => response.json())
         .then(data => {
           if (data.length > 0) {
@@ -90,12 +90,12 @@ const AccountPage = () => {
     e.preventDefault();
     const userEmail = localStorage.getItem('loggedInUserId');
     if (userEmail) {
-      fetch(`http://localhost:3000/users?email=${encodeURIComponent(userEmail)}`)
+      fetch(`https://bookstore-api-o0xo.onrender.com/users?email=${encodeURIComponent(userEmail)}`)
         .then(response => response.json())
         .then(data => {
           if (data.length > 0) {
             const userId = data[0].id;
-            fetch(`http://localhost:3000/users/${userId}`, {
+            fetch(`https://bookstore-api-o0xo.onrender.com/users/${userId}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
